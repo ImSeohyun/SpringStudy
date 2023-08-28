@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 
+	     기본 생성자
+	   이전방식: UserService xxx = new UserService();  동일
+	 -->
+	<bean id="xxx" class="com.service.UserService2" />
+
+    <!--  
+      num 과 username 파라미터에 값 주입 
+      이전방식: UserService xxx = new UserService(10, "홍길동");
+      -->
+     <bean id="yyy" class="com.service.UserService2">
+      <constructor-arg name="num" >
+        <value>100</value>
+      </constructor-arg>
+      <constructor-arg name="username">
+        <value>홍길동2</value>
+      </constructor-arg>
+    </bean>
+     <bean id="yyy4" class="com.service.UserService2">
+      <constructor-arg name="username" value="홍길동" />
+      <constructor-arg name="num" value="10" />
+    </bean>
+    <bean id="yyy3" class="com.service.UserService2">
+      <constructor-arg index="1" value="홍길동" />
+      <constructor-arg index="0" value="10" />
+    </bean>
+    <bean id="yyy2" class="com.service.UserService2">
+      <constructor-arg value="10" />
+      <constructor-arg value="홍길동" />
+    </bean>
+</beans>
+
+
+
+
+

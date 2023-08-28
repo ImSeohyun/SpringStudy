@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<bean id="dao" class="com.dao.UserDAO" />
+	<!-- 
+	     UserDAO dao = new UserDAO();
+	 -->
+	 <bean id="service" class="com.service.UserService3"
+	   c:dao2-ref="dao" c:num2="100"
+	    />
+	 
+	 
+	 <bean id="service4" class="com.service.UserService3">
+	  <constructor-arg name="dao2">
+	    <ref bean="dao"/>
+	  </constructor-arg>
+	  <constructor-arg name="num2" value="10" />
+	</bean>
+	
+	
+	<bean id="service3" class="com.service.UserService3">
+	  <constructor-arg name="dao2" ref="dao" />
+	  <constructor-arg name="num2" value="10" />
+	</bean>
+	
+	<bean id="service2" class="com.service.UserService3">
+	  <constructor-arg ref="dao" />
+	</bean>
+	
+	
+	<!-- 
+	     UserService3 service = new UserService3(dao);
+	 -->
+	
+</beans>
+
+
+
+
+

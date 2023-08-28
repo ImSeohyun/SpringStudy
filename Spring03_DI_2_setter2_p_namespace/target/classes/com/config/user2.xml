@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- 
+       UserService service = new UserService();
+       service.setNum(10);
+       service.setUsername("홍길동");
+    -->
+    <bean id="service" class="com.service.UserService2" 
+     p:num="20" p:username="이순신" />
+    
+  <bean id="service3" class="com.service.UserService2">
+     <property name="num">
+       <value>10</value>
+     </property>
+     <property name="username">
+      <value>홍길동</value>
+     </property>
+  </bean>  
+  
+  <bean id="service2" class="com.service.UserService2">
+     <property name="num" value="10" />
+     <property name="username" value="홍길동" />
+  </bean>
+  
+</beans>
