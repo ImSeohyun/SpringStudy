@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+   <!-- shop_ko.properties 와 shop_en.properties 등록 -->
+   <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+      <property name="basename" value="classpath:com/config/shop" />
+      
+      <!-- properties 파일을 utf-8로 저장한 경우에 사용 -->
+      <property name="defaultEncoding" value="utf-8" />
+   </bean>
+
+  <!-- UserService 등록 -->
+   <bean id="service" class="com.service.UserService" />
+</beans>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<!-- util namespace -->
+	<util:properties id="xxx">
+		<prop key="phone1">01011112222</prop>
+		<prop key="phone2">01033332222</prop>
+	</util:properties>
+	
+	<bean id="service" class="com.service.UserService2">
+		<property name="phones" ref="xxx" />
+	</bean>
+
+	<bean id="service1" class="com.service.UserService4">
+		<property name="phones">
+			<props>
+				<prop key="phone1">01011112222</prop>
+				<prop key="phone1">01022223333</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>
