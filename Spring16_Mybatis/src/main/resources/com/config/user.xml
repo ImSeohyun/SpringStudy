@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    
+    <!--  mybatis 연동 시작 -->
+    <!-- 1. jdbc.properties 등록 -->
+     <context:property-placeholder location="classpath:com/config/jdbc.properties"/> 
+    
+    <!-- 2. DBCP역할의 BasicDataSource 등록 -->
+    <bean id="xxx" class="org.apache.commons.dbcp2.BasicDataSource">
+      <property name="driverClassName" value="${jdbc.driver}" />
+      <property name="url" value="${jdbc.url}" />
+      <property name="username" value="${jdbc.username}" />
+      <property name="password" value="${jdbc.password}" />
+    </bean>
+    
+    <!-- 3. SqlSessionFactoryBean 등록 -->
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+       <property name="dataSource" ref="xxx" />
+       <property name="mapperLocations">
+         <list>
+          <value>classpath:com/config/DeptMapper.xml</value>
+         </list>
+       </property>
+       <property name="typeAliases">
+         <list>
+           <value>com.dto.DeptDTO</value>
+         </list>
+       </property>
+    </bean>
+    
+    <!-- 4. SqlSessionTemplate 등록 -->
+     <bean id="session" class="org.mybatis.spring.SqlSessionTemplate">
+       <constructor-arg name="sqlSessionFactory" ref="sessionFactory" />
+     </bean>
+    
+    <!--  mybatis 연동 끝 -->
+    
+    
+    
+    <!--  생성할 빈들의 정보를 패키지 단위로 지정 
+      Scans the classpath for annotated components that will be auto-registered as Spring beans.
+           마킹된 빈들만 생성됨( @Component @Repository @Service @Controller @RestController 등 )
+    -->
+    <context:component-scan base-package="com.*" />
+</beans>

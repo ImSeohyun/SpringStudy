@@ -9,7 +9,7 @@ public class TestMain {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
 		
 		//profile 결정
-		ctx.getEnvironment().setActiveProfiles("prod"); // dev
+		ctx.getEnvironment().setActiveProfiles("prod"); // dev으로도 설정 가능
 		// xml 등록
 		ctx.load("classpath:com/config/user_dev.xml","classpath:com/config/user_prod.xml");
 		ctx.refresh();

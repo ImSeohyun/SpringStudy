@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<context:annotation-config />
+	
+	<!-- 
+	1. spel용 리소스번들 등록은 namespace이용 
+	2. properties 파일은 iso-8859-1인 기본 인코딩을 사용해야 된다
+	-->
+	<util:properties id="xxx" location="classpath:com/config/application.properties" />
+	
+	<bean id="cat1" class="com.dto.Cat">
+		<property name="username" value="#{xxx['cat.username']}"/>
+		<property name="age" value="#{xxx['cat.age']}"/>
+	</bean>
+
+</beans>
